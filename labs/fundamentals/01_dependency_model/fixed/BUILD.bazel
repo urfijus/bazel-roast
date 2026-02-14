@@ -1,0 +1,10 @@
+py_library(
+    name = "utils",
+    srcs = ["utils.py"],
+)
+
+py_binary(
+    name = "app",
+    srcs = ["app.py"],
+    deps = [":utils"],
+)

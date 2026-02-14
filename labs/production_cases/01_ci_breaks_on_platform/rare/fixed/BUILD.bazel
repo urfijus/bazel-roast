@@ -1,0 +1,16 @@
+config_setting(
+    name = "cfg_linux",
+    constraint_values = ["//platforms:linux"],
+)
+
+config_setting(
+    name = "cfg_mac",
+    constraint_values = ["//platforms:mac"],
+)
+
+sh_binary(
+    name = "report",
+    srcs = ["report.sh"],
+    data = ["//labs/production_cases/01_ci_breaks_on_platform/rare/fixed/message_lib:message_lib"],
+    args = ["$(location //labs/production_cases/01_ci_breaks_on_platform/rare/fixed/message_lib:message_lib)"],
+)

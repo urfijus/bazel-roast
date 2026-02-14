@@ -1,0 +1,11 @@
+genrule(
+    name = "message_lib",
+    srcs = select({
+        "//labs/production_cases/01_ci_breaks_on_platform/rare/broken:cfg_linux": ["//labs/production_cases/01_ci_breaks_on_platform/rare/broken:linux_message.txt"],
+        # Intentionally wrong: macOS will NOT match this condition and will fall back to default.
+        "//labs/production_cases/01_ci_breaks_on_platform/rare/broken:cfg_mac_wrong": ["//labs/production_cases/01_ci_breaks_on_platform/rare/broken:mac_message.txt"],
+        "//conditions:default": ["//labs/production_cases/01_ci_breaks_on_platform/rare/broken:missing_mac.txt"],
+    }),
+    outs = ["message.txt"],
+    cmd = "cat $(SRCS) > $@",
+)

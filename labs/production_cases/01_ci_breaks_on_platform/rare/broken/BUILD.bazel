@@ -1,0 +1,24 @@
+config_setting(
+    name = "cfg_linux",
+    constraint_values = ["//platforms:linux"],
+)
+
+# Intentionally wrong: checks a local constraint value that no platform will ever provide.
+constraint_setting(name = "os_local")
+
+constraint_value(
+    name = "mac_local",
+    constraint_setting = ":os_local",
+)
+
+config_setting(
+    name = "cfg_mac_wrong",
+    constraint_values = [":mac_local"],
+)
+
+sh_binary(
+    name = "report",
+    srcs = ["report.sh"],
+    data = ["//labs/production_cases/01_ci_breaks_on_platform/rare/broken/message_lib:message_lib"],
+    args = ["$(location //labs/production_cases/01_ci_breaks_on_platform/rare/broken/message_lib:message_lib)"],
+)

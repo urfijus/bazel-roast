@@ -1,9 +1,0 @@
-package(default_visibility = ["//visibility:public"])
-
-# For the workshop we route the main target to the broken implementation.
-# Participants only edit files under ./broken.
-
-alias(
-    name = "report",
-    actual = "//labs/lab01_select_platform/broken:report",
-)

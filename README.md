@@ -1,24 +1,76 @@
-# Bazel workshop lab (Codespaces-friendly)
 
-This repo contains small hands-on labs that you can run in GitHub Codespaces.
+  # Bazel Roast
 
-## Lab 01: select() + platforms
+This repository contains hands-on labs and production-style incident scenarios designed to help engineers understand how Bazel behaves in real systems. Codespaces-friendly.
 
-Broken version:
-  labs/lab01_select_platform/broken
+The goal is not just to fix builds.
+The goal is to understand how Bazel models dependencies, configuration, platforms, and build behavior.
 
-Solution (one possible fix):
-  labs/lab01_select_platform/solution
+---
 
-Run from repo root:
+## Repository Structure
 
-Broken, linux (succeeds):
-  bazel build //labs/lab01_select_platform/broken:report --platforms=//platforms:linux
+```
+labs/
+  fundamentals/
+  production_cases/
+```
 
-Broken, mac (fails):
-  bazel build //labs/lab01_select_platform/broken:report --platforms=//platforms:mac
+---
 
-After you fix the broken lab, both commands should succeed.
+## Fundamentals
 
-Compare with the provided solution:
-  bazel build //labs/lab01_select_platform/solution:report --platforms=//platforms:mac
+The `fundamentals` folder contains structured learning labs.
+
+These are designed for engineers who are new to Bazel or want to strengthen their understanding of core concepts such as:
+
+* Explicit dependencies
+* Visibility boundaries
+* Dependency graph analysis
+* Configuration and select
+* Build actions and incrementality
+
+Each lab typically contains:
+
+* A short description
+* A `broken` version
+* A `fixed` version
+
+Start here if you want to build a solid mental model of how Bazel works.
+
+---
+
+## Production Cases
+
+The `production_cases` folder contains realistic incident scenarios inspired by real-world build issues in large monorepos.
+
+Each case represents a production-style problem you might encounter in CI or during development.
+
+Some cases include two variants:
+
+* `welldone` – a common and straightforward issue
+* `rare` – subtle, unexpected, and slightly uncomfortable
+
+The scenario stays the same.
+The reasoning required to solve it does not.
+
+---
+
+## How to Run
+
+This repository is designed to run in GitHub Codespaces or any environment with Bazel installed.
+
+To run a lab:
+
+```
+bazel build //labs/fundamentals/01_dependency_model/broken:app
+```
+
+To run a production case:
+
+```
+bazel build //labs/production_cases/01_ci_breaks_on_platform/welldone/broken:report --platforms=//platforms:linux_platform
+```
+
+Each lab or case contains its own README with reproduction steps and instructions.
+

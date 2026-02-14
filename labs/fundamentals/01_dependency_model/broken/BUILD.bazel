@@ -1,0 +1,11 @@
+py_library(
+    name = "utils",
+    srcs = ["utils.py"],
+)
+
+py_binary(
+    name = "app",
+    srcs = ["app.py"],
+    # TODO: Fix me: app uses `utils` but does not declare it.
+    deps = [],
+)

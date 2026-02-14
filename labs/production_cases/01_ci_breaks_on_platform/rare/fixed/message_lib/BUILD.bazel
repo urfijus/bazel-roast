@@ -1,0 +1,9 @@
+genrule(
+    name = "message_lib",
+    srcs = select({
+        "//labs/production_cases/01_ci_breaks_on_platform/rare/fixed:cfg_linux": ["//labs/production_cases/01_ci_breaks_on_platform/rare/fixed:linux_message.txt"],
+        "//labs/production_cases/01_ci_breaks_on_platform/rare/fixed:cfg_mac": ["//labs/production_cases/01_ci_breaks_on_platform/rare/fixed:mac_message.txt"],
+    }),
+    outs = ["message.txt"],
+    cmd = "cat $(SRCS) > $@",
+)

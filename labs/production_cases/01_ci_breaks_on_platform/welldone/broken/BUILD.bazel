@@ -1,0 +1,9 @@
+genrule(
+    name = "report",
+    srcs = select({
+        "//platforms:is_linux": ["linux_message.txt"],
+        "//platforms:is_mac": ["mac_message.txt"],
+    }),
+    outs = ["report.txt"],
+    cmd = "cat $(SRCS) > $@",
+)

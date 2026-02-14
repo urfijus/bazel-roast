@@ -1,0 +1,5 @@
+bazel-bazel-workshop
+bazel-bin
+bazel-out
+bazel-testlogs
+MODULE.bazel.lock
