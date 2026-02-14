@@ -1,10 +1,14 @@
-py_library(
-    name = "utils",
-    srcs = ["utils.py"],
+filegroup(
+    name = "util",
+    srcs = ["util.txt"],
 )
 
-py_binary(
+genrule(
     name = "app",
-    srcs = ["app.py"],
-    deps = [":utils"],
+    srcs = [
+        "main.txt",
+        ":util",
+    ],
+    outs = ["app.out"],
+    cmd = "cat $(location main.txt) $(location util.txt) > $@",
 )

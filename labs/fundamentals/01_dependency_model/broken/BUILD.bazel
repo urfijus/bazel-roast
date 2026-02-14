@@ -1,11 +1,15 @@
-py_library(
-    name = "utils",
-    srcs = ["utils.py"],
+filegroup(
+    name = "util",
+    srcs = ["util.txt"],
 )
 
-py_binary(
+genrule(
     name = "app",
-    srcs = ["app.py"],
-    # TODO: Fix me: app uses `utils` but does not declare it.
-    deps = [],
+    srcs = [
+        "main.txt",
+        # TODO: Fix me: this rule *uses* util.txt but does not declare it as an input.
+        # Add the missing prerequisite so the build succeeds.
+    ],
+    outs = ["app.out"],
+    cmd = "cat $(location main.txt) $(location util.txt) > $@",
 )

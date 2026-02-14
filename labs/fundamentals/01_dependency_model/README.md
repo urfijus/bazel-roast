@@ -1,21 +1,31 @@
-# Fundamentals 01 - Dependency Model
+# 01 – Dependency Model (Explicit Inputs)
 
 ## Context
 
-Bazel requires explicit dependencies.
+Bazel only knows about files and targets you explicitly declare.
+If a rule uses a file but does not list it as an input, Bazel fails during analysis.
 
-Even if your code references another target, the build fails unless the dependency is declared in the BUILD file.
+This lab demonstrates the idea behind "explicit dependencies" in the simplest possible way.
 
 ## Reproduce
 
+Run:
+
 bazel build //labs/fundamentals/01_dependency_model/broken:app
 
-Expected: the build fails.
+It should fail with an error explaining that `util.txt` is referenced but not declared as an input.
 
 ## Task
 
-Fix BUILD.bazel so the target builds successfully.
+Fix the `broken/BUILD.bazel` file so the build succeeds.
 
-Rules:
-- Do not modify source files.
-- Only fix BUILD.bazel.
+Do not change the command or the text files.
+Only fix the declared inputs.
+
+## Verify
+
+After fixing it, this should succeed:
+
+bazel build //labs/fundamentals/01_dependency_model/broken:app
+
+For reference, a working solution exists in `fixed/`.
