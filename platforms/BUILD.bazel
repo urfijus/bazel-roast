@@ -1,0 +1,23 @@
+load("@bazel_tools//tools/build_defs/platform:platforms.bzl", "platform")
+
+constraint_setting(name = "os")
+
+constraint_value(
+name = "linux",
+constraint_setting = ":os",
+)
+
+constraint_value(
+name = "mac",
+constraint_setting = ":os",
+)
+
+platform(
+name = "linux_platform",
+constraint_values = [":linux"],
+)
+
+platform(
+name = "mac_platform",
+constraint_values = [":mac"],
+)

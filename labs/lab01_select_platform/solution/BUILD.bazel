@@ -1,0 +1,12 @@
+# Lab 01: select() + platforms (one possible solution)
+
+genrule(
+    name = "report",
+    srcs = select({
+        "//platforms:is_linux": ["linux_message.txt"],
+        "//platforms:is_mac": ["mac_message.txt"],
+        "//conditions:default": ["linux_message.txt"],
+    }),
+    outs = ["report.txt"],
+    cmd = "cat $(SRCS) > $@",
+)

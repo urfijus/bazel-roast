@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+lab=${1:-}
+if [[ -z "$lab" ]]; then
+  echo "Usage: ./scripts/workshop lab01"
+  exit 2
+fi
+
+case "$lab" in
+  lab01)
+    echo "== Lab 01 (broken) =="
+    echo "+ bazel build //labs/lab01_select_platform/broken:report"
+    bazel build //labs/lab01_select_platform/broken:report
+
+    echo
+    echo "== Now simulate mac platform (expected to FAIL until fixed) =="
+    echo "+ bazel build //labs/lab01_select_platform/broken:report --platforms=//platforms:mac"
+    bazel build //labs/lab01_select_platform/broken:report --platforms=//platforms:mac
+    ;;
+  *)
+    echo "Unknown lab: $lab"
+    exit 2
+    ;;
+esac

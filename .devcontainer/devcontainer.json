@@ -1,0 +1,13 @@
+{
+  "name": "bazel-workshop",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "bash scripts/setup_bazelisk.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bazelbuild.vscode-bazel",
+        "ms-vscode.live-share"
+      ]
+    }
+  }
+}
